@@ -24,11 +24,12 @@ classicEM <- function(data, k, thres=0.1, maxit=NULL) {
 		sdvect[i] <- sd(data[,i])
 	}
 	
+	km <- kmeans(data, k)
 	for (i in 1:k) {
 		w[i] <- 1/k
 		mean[[i]] <- matrix(0, nrow=d, ncol=1)
 		for(j in 1:d) {
-			mean[[i]][j,1] <- runif(1, mins[j], maxs[j])
+			mean[[i]][j,1] <- km$centers[i,j]
 		}
 	
 		
